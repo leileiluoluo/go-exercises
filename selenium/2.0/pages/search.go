@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	typeBy   = "#id"
+	typeBy   = "#s"
 	clickBy  = "#searchsubmit"
 	resultBy = "h3>a"
 
@@ -37,7 +37,7 @@ func (sp *SearchPage) openSearchPage() error {
 
 // type keyword
 func (sp *SearchPage) typeKeyword(keyword string) error {
-	elem, err := drv.FindElement(selenium.ByID, "s")
+	elem, err := drv.FindElement(selenium.ByCSSSelector, typeBy)
 	if nil != err {
 		return errors.New(fmt.Sprintf("find element error, err: %s", err))
 	}
@@ -51,7 +51,7 @@ func (sp *SearchPage) typeKeyword(keyword string) error {
 
 // click search
 func (sp *SearchPage) clickSearch() error {
-	elem, err := drv.FindElement(selenium.ByID, "searchsubmit")
+	elem, err := drv.FindElement(selenium.ByCSSSelector, clickBy)
 	if nil != err {
 		return errors.New(fmt.Sprintf("find element error, err: %s", err))
 	}
@@ -81,7 +81,7 @@ func (sp *SearchPage) Search(keyword string) (int, error) {
 	}
 
 	// search result
-	elems, err := drv.FindElements(selenium.ByCSSSelector, "h3>a")
+	elems, err := drv.FindElements(selenium.ByCSSSelector, resultBy)
 	if nil != err {
 		return 0, errors.New(fmt.Sprintf("find element error, err: %s", err))
 	}
