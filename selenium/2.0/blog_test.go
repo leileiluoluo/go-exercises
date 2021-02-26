@@ -11,6 +11,7 @@ import (
 var (
 	browserName = flag.String("browser", "chrome", "browser name")
 	gridUrl     = flag.String("grid", "http://localhost:4444/wd/hub", "grid url")
+	keyword     = "istio"
 )
 
 var driver selenium.WebDriver
@@ -32,7 +33,7 @@ func setup() func() {
 
 func TestSearch(t *testing.T) {
 	sp := pages.NewSearchPage(driver)
-	count, err := sp.Search("istio")
+	count, err := sp.Search(keyword)
 	if nil != err || count < 1 {
 		t.Errorf("search error, count: %d, err: %s", count, err)
 	}
