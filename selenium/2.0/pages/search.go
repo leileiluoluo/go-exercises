@@ -13,7 +13,7 @@ const (
 	searchButtonIdSelector         = "searchOpen"
 	keywordInputIdSelector         = "search-query"
 	searchResultLoadingCssSelector = "#search-results #loadingDiv"
-	searchResult                   = "#search-results .border-bottom"
+	searchResultCssSelector        = "#search-results .border-bottom"
 )
 
 var drv selenium.WebDriver
@@ -86,7 +86,7 @@ func (sp *SearchPage) Search(keyword string) (int, error) {
 	}
 
 	// return
-	elems, err := drv.FindElements(selenium.ByCSSSelector, searchResult)
+	elems, err := drv.FindElements(selenium.ByCSSSelector, searchResultCssSelector)
 	if nil != err {
 		return 0, errors.New(fmt.Sprintf("search element error, err: %s", err))
 	}

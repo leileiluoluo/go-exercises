@@ -17,7 +17,7 @@ var (
 	searchButtonIdSelector         = "searchOpen"
 	keywordInputIdSelector         = "search-query"
 	searchResultLoadingCssSelector = "#search-results #loadingDiv"
-	searchResult                   = "#search-results .border-bottom"
+	searchResultCssSelector        = "#search-results .border-bottom"
 
 	keyword = "istio"
 )
@@ -84,7 +84,7 @@ func TestSearch(t *testing.T) {
 	}, 30*time.Second)
 
 	// assert
-	elems, err := driver.FindElements(selenium.ByCSSSelector, searchResult)
+	elems, err := driver.FindElements(selenium.ByCSSSelector, searchResultCssSelector)
 	if nil != err || len(elems) < 1 {
 		t.Errorf("no search result, err: %s", err)
 	}
